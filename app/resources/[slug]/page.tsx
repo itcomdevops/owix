@@ -6,6 +6,12 @@ import PostFooter from '../../../components/PostFooter'
 import PostHeader from '../../../components/PostHeader'
 import { SITE_URL, SITE_NAME, AUTHOR_NAME } from '../../../config'
 
+export async function generateStaticParams() {
+  return allResources.map((post) => ({
+    slug: post.slug,
+  }))
+}
+
 // Metadata function for SEO
 export async function generateMetadata({
   params,

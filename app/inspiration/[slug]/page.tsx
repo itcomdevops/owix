@@ -6,6 +6,12 @@ import Layout from '../../../components/Layout'
 import InspirationPost from '../../../components/InspirationPost'
 import { AUTHOR_NAME, SITE_NAME, SITE_URL } from '../../../config'
 
+export async function generateStaticParams() {
+  return allInspirations.map((inspiration) => ({
+    slug: inspiration.slug,
+  }))
+}
+
 // Metadata function for SEO
 export async function generateMetadata({
   params,

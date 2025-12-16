@@ -8,6 +8,12 @@ import { SITE_URL, SITE_NAME, AUTHOR_NAME } from '../../../config'
 import ExportedImage from 'next-image-export-optimizer'
 import Link from 'next/link'
 
+export async function generateStaticParams() {
+  return allPodcasts.map((post) => ({
+    slug: post.slug,
+  }))
+}
+
 // Metadata function for SEO
 export async function generateMetadata({
   params,

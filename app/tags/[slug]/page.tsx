@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { extractUniqueTags } from '../../../utils/tags'
 
 import {
   Blog,
@@ -17,6 +18,20 @@ import Layout from '../../../components/Layout'
 import ExportedImage from 'next-image-export-optimizer'
 import { Icon } from '../../../components/Icon'
 import { AUTHOR_NAME, SITE_NAME, SITE_URL } from '../../../config'
+
+export async function generateStaticParams() {
+  const allPosts = [
+    ...allBlogs,
+    ...allInspirations,
+    ...allPodcasts,
+    ...allResources,
+    ...allTools,
+  ]
+  const tags = extractUniqueTags(allPosts)
+  return tags.map((tag) => ({
+    slug: tag,
+  }))
+}
 
 // Metadata function for SEO
 export async function generateMetadata({
